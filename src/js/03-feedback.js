@@ -1,5 +1,7 @@
 import throttle from "lodash.throttle";
 
+// -------------------ссылки на разметку-------------------
+
 const refs = {
   form: document.querySelector(".feedback-form"),
   email: document.querySelector("input"),
@@ -8,12 +10,18 @@ const refs = {
 
 const feedbackFormState = {};
 
+//----------------------проверка если есть что-то в хранилище-------------
+
 if (localStorage.getItem("feedback-form-state")) {
   setEmailInputValue();
   setMessageInputValue();
 }
 
+//----------------------записываем значения инпутов в хранилише------------
+
 refs.form.addEventListener("input", throttle(storeDataToLocalStorage, 500));
+
+//----------------------очищаем форму и хранилище при сабмите---------------
 
 refs.form.addEventListener("submit", clearForm);
 
